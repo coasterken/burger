@@ -1,0 +1,60 @@
+<div>
+    <img id="burgerImg" src="/assets/img/burger2.png" alt="A Burger" />
+</div>
+<div class="center_me">
+    <h1>Eat Da Burger</h1>
+    <hr>
+</div>
+
+
+{{!-- Burgers that have not been devoured --}}
+<div class="flex-container">
+    <div class="flex-item">
+        <h2>Burgers to be Devoured</h2>
+        <h4>Click the hungry burger to devour!</h4>
+        {{#each burgers}} {{!-- if false --}} 
+            {{#unless this.devoured}}
+                
+                <div class="displayBurgers">
+                  <span>   {{this.id}}. {{this.burger_name}} </span>
+                </div>
+                <div class="devour">
+                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                        <input type="hidden" name="burger" value="true">
+                        {{!-- <button type="submit">Devour!</button> --}}
+                        <input id="devourImg" type="image" src="/assets/img/eat-this-burger-300px.png" ></button>
+                    </form>
+                </div>
+           
+            {{/unless}} 
+        {{/each}}
+    </div>
+
+    <div class="flex-item">
+        {{!-- Burgers that have been devoured --}}
+        <h2>Devoured Burgers</h2>
+        <h4>Feeling full yet?</h4>
+            {{#each burgers}} {{!-- If true --}} 
+                {{#if this.devoured}}
+                <div class="displayBurgers">
+                    <span>{{this.id}}.  {{this.burger_name}}</span >
+                </div>
+                {{/if}} 
+            {{/each}}
+    </div>
+</div>
+
+<div class="center_me">
+    {{!-- Post to root route --}}
+    <hr>
+    <h2>Add A Burger</h2>
+    <form class="create-update-form" action="/" method="POST">
+
+        <div class="form-group">
+            <input type="text" id="addBurger" name="burger_name">
+        </div>
+
+        <button class="button" type="submit">Submit</button>
+        <p>Enter a burger you want to eat and Click the 'Submit' button.</p>
+    </form>
+</div>
