@@ -1,11 +1,12 @@
 // require express framework
 var express = require("express");
-//require burger mode ==> orm ==> connection
+//require burger ==> orm ==> connection
 var burger = require("../models/burger.js");
 //use the express router option
 var router = express.Router();
 
 // Create all our routes and set up logic within those routes where required.
+// root route - this runs when page is loaded or get root
 router.get("/", function (req, res) {
     burger.selectAll(function (data) {
         //context
